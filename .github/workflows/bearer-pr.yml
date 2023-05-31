@@ -18,7 +18,12 @@ jobs:
         uses: bearer/bearer-action@v2
         with:
           format: sarif
-          output: results.sarif
+          output: bearer.sarif
+      - id: fixup
+        shell: bash
+        run: |
+          jq '.runs[0].tool.driver.informationUri = "https://docs.bearer.sh"' bearer.sarif > results.sarif
+          cat results.sarif
       - uses: HollowMan6/sarif4reviewdog@v1.0.0
         with:
           file: 'results.sarif'
@@ -26,5 +31,7 @@ jobs:
           # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#preventing-github-actions-from-creating-or-approving-pull-requests
           github_token: ${{ secrets.github_token }}
           # Change reviewdog reporter if you need [github-pr-check,github-check,github-pr-review].
-          reporter: github-pr-check
+          reporter: github-check
+          # Change reporter level if you need.
+          # GitHub Status Check won't become failure with warning.
           level: warning
