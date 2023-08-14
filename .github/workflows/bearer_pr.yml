@@ -9,7 +9,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  rule_check:
+  rule_check1:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:

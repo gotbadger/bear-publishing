@@ -1,16 +1,15 @@
-name: Bearer
+name: Bearer PR Check Basic
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
-  rule_check:
+  rule_check2:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -18,5 +17,3 @@ jobs:
       - name: Run Report
         id: report
         uses: bearer/bearer-action@v2
-        with:
-          format: rdjson
