@@ -1,4 +1,4 @@
-name: Bearer PR Check Basic
+name: Bearer PR Check RDJSON
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  rule_check2:
+  rule_check3:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -17,3 +17,5 @@ jobs:
       - name: Run Report
         id: report
         uses: bearer/bearer-action@v2
+        with:
+          format: rdjson
