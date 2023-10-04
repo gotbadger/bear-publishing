@@ -2,7 +2,7 @@
 #
 # See https://docs.bearer.com/guides/bearer-cloud/
 
-name: Bearer
+name: Bearer Sec
 
 on:
   push:
