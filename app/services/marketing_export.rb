@@ -31,15 +31,13 @@ class MarketingExport
   end
 
   def upload_csv(file)
-    Net::FTP.open(
+    Net::SFTP.start(
       'marketing.example.com',
-      {
-        username: 'marketing',
-        password: 'password123'
-      }
-      ) do |ftp|
-      ftp.passive = true
-      ftp.putbinaryfile(file)
+      'marketing',
+      password: 'password123'
+    ) do |sftp|
+      sftp.upload!(file, "/remote/path/#{File.basename(file)}")
     end
   end
 end
+
